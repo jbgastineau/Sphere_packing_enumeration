@@ -4,7 +4,23 @@ function Packings = generate_graphs ( radius2, radius3, number1, number2, number
 % arbitrary numbers of only three different kind of spheres.
 
 
-% Detailed explanation , ideas, limitations.
+
+%INPUTS : 
+% number1 : number of spheres of type1
+% number2 : number of spheres of type2
+% number3 : number of spheres of type3
+% radius2 : size ratio between the radius of type1 and type2 spheres
+% radius3 : size ratio between the radius of type1 and type3 spheres
+
+
+%OUTPUTS :
+% Packings : a collection of all sphere packings possible ( and possibly more)
+%            given the input parameters. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Detailed explanation , ideas, limitations.%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% (I) The task to be solved :
 % Given are 3 different spheres: s1, s2 and s3. Assume that we have n s1, m s2 and p s3. 
@@ -15,27 +31,36 @@ function Packings = generate_graphs ( radius2, radius3, number1, number2, number
 %In order to draw all possible compactions of spheres, we have to define what are two different
 % compactions, or ( the same ) what are equal compactions.
 % (II ) Definitions :
-%  What we call graph of contact is the 
+%  Two sphere packings are considred as different if the graph of contact between spheres is different.
+%  Each sphere of the packing is a vertex of the graph, and a edge between to vertex exists 
+%  if and only if the two corresponding spheres are in contact.
+
+
+% (III) Ideas, strategy used.
+% I chose to take a best effort approach. 
+% First all possible connected graphs with the corresponding number¨: n  of vertex are generated
+		% (1) all graphs are generated ( complexity in time  : 2^((n-1) * n/2) )
+		% (2) only those which are connected are selected for the next step.
+		%  for n = 2 :     1 connected graph
+		%  for n = 3 :     4 connected graphs
+		%  for n = 4 :     38 connected graphs
+		%  for n = 5 :     728  connected graphs
+		%  for n = 6 :     26704   "
+		%  for n = 7 :     1 866 256  "
+% Then the algorithm checks if a real sphere packing can be associated to each graph
+		% (3) all vertex of the graph is replaced by the corresponding sphere
+		% (4) a PSO optimization is launched to try build a sphere packing that 
+		%     respect the contact and non-contact constraints between spheres
+		%     using a objective function to be minimized.
+		% (5) a verification function is called to check if the trial of PSO was successful
+		%     this conditions are checked : sphere should not intersect each other,
+		%     spheres should be in contact if corresponding vertex of the graph are connected,
+		%     spheres should not be in contact if corresponding vertes of the graph are not connected.
+% Finally, all retained packings are stored in a container given in output, to be displayed by one other function  
 
 
 % if you are tired to read my explanations, you can go there 
 % http://www.youtube.com/watch?v=uqr8VxNvHYQ&list=RDhEnLlQ4XxSc
-% What have been done, the strategy used here.
-
-
-
-
-INPUTS : 
-% number1 : number of spheres of type1
-% number2 : number of spheres of type2
-% number3 : number of spheres of type3
-% radius2 : size ratio between the radius of type1 and type2 spheres
-% radius3 : size ratio between the radius of type1 and type3 spheres
-
-
-OUTPUTS :
-% Packings : a collection of all sphere packings possible ( and possibly more)
-%            given the input parameters. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Initialisation%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -151,8 +176,6 @@ for i = 1 : connected_graph_limit
         Z = size(comb);
         
         
-        % well done, you have read everything, now you can see this this video
-        % 
     end
 end
 end
