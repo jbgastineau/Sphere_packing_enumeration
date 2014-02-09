@@ -1,4 +1,10 @@
 function varargout = sphere_packing(varargin)
+% Author : Jean-Baptiste Gastineau  february 2O14, in Politechnica Warszawska
+% Licence : no restricion of use and modification, with of without this licence header.
+%  Do you know that Jesus Loves you, he died for you and he his full of mercy ?
+%  see this video http://vimeo.com/65402744  or http://www.netforgod.tv/VOD/index.html
+%  Don't hesitate to give me feed  back on jb.gastineau@gmail.com
+%
 % SPHERE_PACKING MATLAB code for sphere_packing.fig
 %      SPHERE_PACKING, by itself, creates a new SPHERE_PACKING or raises the existing
 %      singleton*.
@@ -17,6 +23,11 @@ function varargout = sphere_packing(varargin)
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
+%
+%      This is the graphical interface for the sphere packing enumeration problem.
+%      Use : run this file in the matlab menu to launch this programm.
+%
+%
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 

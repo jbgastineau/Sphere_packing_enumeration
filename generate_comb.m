@@ -1,6 +1,33 @@
 function [ comb ] = generate_comb( first_comb, max_edge)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+% Generate the next (1) combination of length(first_comb) elements among max_edge.
+% If no combination is found, then comb=0 .
+
+% Alternatively there is a native matlab function doing almost the same (I discovered it only after)
+% I acknowledge that a recursive function doing the same would have been more understandable
+% but the iterative way ask for less memory : the total number of combination is 
+% length(first_comb) among max_edge.
+
+% (1) idea to understand :
+% The order of combination used is the order of leaves ( from left to right ) of a tree build by
+% by a recursive enumeration of the combinations produced by the Pascal formula.
+% 
+
+% requires : length(first_comb) <= max_edge
+
+% Usage : next_comb = generate_comb([1,2,3], 4)
+
+% example of use : successive calls :
+% b = [1,2,3]
+% b = generate_comb(b,4) 
+%  now b = [1,2,4]
+% b = generate_comb(b,4) 
+%  now b = [1,3,4]
+% b = generate_comb(b,4) 
+%  now b = [2,3,4]
+% b = generate_comb(b,4) 
+%  now b = 0    : no next combination has been found.
+
+
 Z = size(first_comb);
 T = Z(2);
 i = Z(2);
@@ -25,7 +52,7 @@ i = Z(2);
             end
             
             % increment the element of this indice and
-            % replace the seqence of element that follow this indice.
+            % replace the sequence of element that follow this indice.
             comb =  first_comb;
             comb(i) = comb(i)+1;
             for j = i+1:T
@@ -52,8 +79,8 @@ i = Z(2);
                 end                
             end
             
-            % increment the element of this indice and
-            % replace the seqence of element that follow this indice.
+            % increment the element of this index and
+            % replace the sequence of element that follow this index.
             comb =  first_comb;
             comb(i) = comb(i)+1;
             for j = i+1:T
@@ -66,5 +93,4 @@ i = Z(2);
             return;
         end
     end
-    %comb = 0;
 end
