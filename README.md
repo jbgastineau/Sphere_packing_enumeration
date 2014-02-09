@@ -1,9 +1,8 @@
 Sphere_packing_enumeration and display
 ==========================
 
-A french version of this read_me file is available at the second half of the file.
 
-Enumeration and display of all sphere packing of an arbitrary number of  three different kind of spheres according to contact graph criteria
+Enumeration and display of all sphere packing of an arbitrary number of  three different kind of spheres according to contact graph criteria, in MATLAB .
 
 
 Author  : Jean-Baptiste gastineau, jb.gastineau@gmail.com
